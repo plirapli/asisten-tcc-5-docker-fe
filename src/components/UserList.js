@@ -10,13 +10,17 @@ const UserList = () => {
   }, []);
 
   const getUsers = async () => {
-    const response = await axios.get("http://localhost:5000/users");
+    const response = await axios.get(
+      "https://8080-cs-782654603278-default.cs-asia-southeast1-palm.cloudshell.dev/users"
+    );
     setUser(response.data);
   };
 
   const deleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/delete-users/${id}`);
+      await axios.delete(
+        `https://8080-cs-782654603278-default.cs-asia-southeast1-palm.cloudshell.dev/delete-users/${id}`
+      );
       getUsers();
     } catch (error) {
       console.log(error);

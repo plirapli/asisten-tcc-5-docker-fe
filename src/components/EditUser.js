@@ -16,11 +16,14 @@ const EditUser = () => {
   const updateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/edit-user/${id}`, {
-        name,
-        email,
-        gender,
-      });
+      await axios.put(
+        `https://8080-cs-782654603278-default.cs-asia-southeast1-palm.cloudshell.dev/edit-user/${id}`,
+        {
+          name,
+          email,
+          gender,
+        }
+      );
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -28,7 +31,9 @@ const EditUser = () => {
   };
 
   const getUserById = async () => {
-    const response = await axios.get(`http://localhost:5000/users/${id}`);
+    const response = await axios.get(
+      `https://8080-cs-782654603278-default.cs-asia-southeast1-palm.cloudshell.dev/users/${id}`
+    );
 
     setName(response.data.name);
     setEmail(response.data.email);

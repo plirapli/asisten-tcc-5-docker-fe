@@ -11,11 +11,14 @@ const AddUser = () => {
   const saveUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/Users", {
-        name,
-        email,
-        gender,
-      });
+      await axios.post(
+        "https://8080-cs-782654603278-default.cs-asia-southeast1-palm.cloudshell.dev/Users",
+        {
+          name,
+          email,
+          gender,
+        }
+      );
       navigate("/");
     } catch (error) {
       console.log(error);
