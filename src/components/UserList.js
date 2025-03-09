@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { baseDomain } from "../utils";
 
 const UserList = () => {
   const [users, setUser] = useState([]);
@@ -10,17 +11,13 @@ const UserList = () => {
   }, []);
 
   const getUsers = async () => {
-    const response = await axios.get(
-      "https://8080-cs-782654603278-default.cs-asia-southeast1-palm.cloudshell.dev/users"
-    );
+    const response = await axios.get(`${baseDomain}/users`);
     setUser(response.data);
   };
 
   const deleteUser = async (id) => {
     try {
-      await axios.delete(
-        `https://8080-cs-782654603278-default.cs-asia-southeast1-palm.cloudshell.dev/delete-users/${id}`
-      );
+      await axios.delete(`${baseDomain}/delete-users/${id}`);
       getUsers();
     } catch (error) {
       console.log(error);

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { baseDomain } from "../utils";
 
 const EditUser = () => {
   const [name, setName] = useState("");
@@ -16,14 +17,11 @@ const EditUser = () => {
   const updateUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(
-        `https://8080-cs-782654603278-default.cs-asia-southeast1-palm.cloudshell.dev/edit-user/${id}`,
-        {
-          name,
-          email,
-          gender,
-        }
-      );
+      await axios.put(`${baseDomain}/edit-user/${id}`, {
+        name,
+        email,
+        gender,
+      });
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -31,9 +29,7 @@ const EditUser = () => {
   };
 
   const getUserById = async () => {
-    const response = await axios.get(
-      `https://8080-cs-782654603278-default.cs-asia-southeast1-palm.cloudshell.dev/users/${id}`
-    );
+    const response = await axios.get(`${baseDomain}/users/${id}`);
 
     setName(response.data.name);
     setEmail(response.data.email);

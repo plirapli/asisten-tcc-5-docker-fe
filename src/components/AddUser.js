@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { baseDomain } from "../utils";
 
 const AddUser = () => {
   const [name, setName] = useState("");
@@ -11,14 +12,11 @@ const AddUser = () => {
   const saveUser = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
-        "https://8080-cs-782654603278-default.cs-asia-southeast1-palm.cloudshell.dev/Users",
-        {
-          name,
-          email,
-          gender,
-        }
-      );
+      await axios.post(`${baseDomain}/users`, {
+        name,
+        email,
+        gender,
+      });
       navigate("/");
     } catch (error) {
       console.log(error);
